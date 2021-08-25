@@ -15,6 +15,7 @@ class CreateValotsTable extends Migration
     {
         Schema::create('valots', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
             $table->integer('vote_purpose_id');
             $table->integer('category_id');
             $table->integer('candidate_id');

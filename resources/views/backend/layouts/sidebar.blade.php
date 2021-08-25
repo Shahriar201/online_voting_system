@@ -1,15 +1,15 @@
 @php
-    $prefix = Request::route()->getPrefix();
-    $route = Route::current()->getName();
+$prefix = Request::route()->getPrefix();
+$route = Route::current()->getName();
 @endphp
 
 <!-- Sidebar Menu -->
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-        @if(Auth::user()->role=='Admin')
+        @if (Auth::user()->role == 'Admin')
 
-            <li class="nav-item has-treeview {{ ($prefix=='/users')?'menu-open':'' }}">
+            <li class="nav-item has-treeview {{ $prefix == '/users' ? 'menu-open' : '' }}">
                 <a href="" class="nav-link">
                     <i class="nav-icon fa fa-user"></i>
                     <p>
@@ -19,16 +19,17 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('users.view') }}" class="nav-link {{ ($route=='users.view')?'active':'' }}">
+                        <a href="{{ route('users.view') }}"
+                            class="nav-link {{ $route == 'users.view' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>View User/Voter</p>
                         </a>
                     </li>
-                    
+
                 </ul>
             </li>
-            
-            <li class="nav-item has-treeview {{ ($prefix=='/votes')?'menu-open':'' }}">
+
+            <li class="nav-item has-treeview {{ $prefix == '/votes' ? 'menu-open' : '' }}">
                 <a href="" class="nav-link">
                     <i class="nav-icon fa fa-user"></i>
                     <p>
@@ -38,16 +39,17 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('votes.view') }}" class="nav-link {{ ($route=='votes.view')?'active':'' }}">
+                        <a href="{{ route('votes.view') }}"
+                            class="nav-link {{ $route == 'votes.view' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>View purpose</p>
                         </a>
                     </li>
-                    
+
                 </ul>
             </li>
-            
-            <li class="nav-item has-treeview {{ ($prefix=='/categories')?'menu-open':'' }}">
+
+            <li class="nav-item has-treeview {{ $prefix == '/categories' ? 'menu-open' : '' }}">
                 <a href="" class="nav-link">
                     <i class="nav-icon fa fa-user"></i>
                     <p>
@@ -57,16 +59,17 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('categories.view') }}" class="nav-link {{ ($route=='categories.view')?'active':'' }}">
+                        <a href="{{ route('categories.view') }}"
+                            class="nav-link {{ $route == 'categories.view' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>View Category</p>
                         </a>
                     </li>
-                    
+
                 </ul>
             </li>
-            
-            <li class="nav-item has-treeview {{ ($prefix=='/candidates')?'menu-open':'' }}">
+
+            <li class="nav-item has-treeview {{ $prefix == '/candidates' ? 'menu-open' : '' }}">
                 <a href="" class="nav-link">
                     <i class="nav-icon fa fa-user"></i>
                     <p>
@@ -76,24 +79,26 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('candidates.president.view') }}" class="nav-link {{ ($route=='candidates.president.view')?'active':'' }}">
+                        <a href="{{ route('candidates.president.view') }}"
+                            class="nav-link {{ $route == 'candidates.president.view' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>View President Candid</p>
                         </a>
                     </li>
-                    
+
                     <li class="nav-item">
-                        <a href="{{ route('candidates.vicepresident.view') }}" class="nav-link {{ ($route=='candidates.vicepresident.view')?'active':'' }}">
+                        <a href="{{ route('candidates.vicepresident.view') }}"
+                            class="nav-link {{ $route == 'candidates.vicepresident.view' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>View President Candid</p>
                         </a>
                     </li>
-                    
+
                 </ul>
-                
+
             </li>
-            
-            <li class="nav-item has-treeview {{ ($prefix=='/nominations')?'menu-open':'' }}">
+
+            <li class="nav-item has-treeview {{ $prefix == '/nominations' ? 'menu-open' : '' }}">
                 <a href="" class="nav-link">
                     <i class="nav-icon fa fa-user"></i>
                     <p>
@@ -103,24 +108,28 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('nominations.president.view') }}" class="nav-link {{ ($route=='nominations.president.view')?'active':'' }}">
+                        <a href="{{ route('nominations.president.view') }}"
+                            class="nav-link {{ $route == 'nominations.president.view' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>View President Nomination</p>
                         </a>
                     </li>
-                    
+
                     <li class="nav-item">
-                        <a href="{{ route('nominations.vicepresident.view') }}" class="nav-link {{ ($route=='nominations.vicepresident.view')?'active':'' }}">
+                        <a href="{{ route('nominations.vicepresident.view') }}"
+                            class="nav-link {{ $route == 'nominations.vicepresident.view' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>View President Nomination</p>
                         </a>
                     </li>
-                    
+
                 </ul>
-                
+
             </li>
-            
-            <li class="nav-item has-treeview {{ ($prefix=='/valots')?'menu-open':'' }}">
+        @endif
+
+        @if (Auth::user()->role == 'Voter')
+            <li class="nav-item has-treeview {{ $prefix == '/valots' ? 'menu-open' : '' }}">
                 <a href="" class="nav-link">
                     <i class="nav-icon fa fa-user"></i>
                     <p>
@@ -130,17 +139,19 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('valots.view') }}" class="nav-link {{ ($route=='valots.view')?'active':'' }}">
+                        <a href="{{ route('valots.view') }}"
+                            class="nav-link {{ $route == 'valots.view' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Give Vote</p>
                         </a>
                     </li>
-                    
-                </ul>
-                
-            </li>
 
+                </ul>
+
+            </li>
         @endif
+
+        {{-- @endif --}}
 
         {{-- <li class="nav-item has-treeview {{ ($prefix=='/profiles')?'menu-open':'' }}">
             <a href="" class="nav-link">

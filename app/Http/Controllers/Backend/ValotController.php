@@ -14,6 +14,7 @@ use Auth;
 class ValotController extends Controller
 {
     public function view(){
+        // dd(Auth::user()->id);
         $allData['valots'] = Valot::all();
         $allData['vote_purposes'] = VotePurpose::all();
         $allData['categories'] = Category::all();
@@ -37,10 +38,10 @@ class ValotController extends Controller
         $valot->category_id = $request->category_id;
         $valot->candidate_id = $request->candidate_id;
         $valot->result = '1';
-        // $valot->created_by = Auth::user()->id;
+        $valot->created_by = Auth::user()->id;
         $valot->save();
 
-        return redirect()->route('valots.add')->with('success', 'Data inserted successfully');
+        return redirect('/home')->with('success', 'Data inserted successfully');
     }
 
     public function edit($id){

@@ -106,10 +106,24 @@
                                             <input type="checkbox" name="result" value="result"> Give Vote
                                         </div>
 
-                                        <div class="form-group col-md-1" style="padding-top:30px">
-                                            <input type="submit" value="{{ @$editData ? 'Update' : 'Submit' }}"
-                                                class="btn btn-primary btn-sm">
-                                        </div>
+                                        @php
+                                            // $count = App\Model\Valot::where(Auth::user()->id, 'created_by')->count();
+                                            $count = App\Model\Valot::where('created_by', Auth::user()->id)->count();
+                                        @endphp
+
+                                        @if ($count < 1)
+                                        {{-- @if (Auth::user()->id == $count) --}}
+                                            <div class="form-group col-md-1" style="padding-top:30px">
+                                                <input type="submit" value="{{ @$editData ? 'Update' : 'Submit' }}"
+                                                    class="btn btn-primary btn-sm">
+                                            </div>
+                                        @else
+                                            {{-- <div class="form-group col-md-1" style="padding-top:30px">
+                                                <input type="submit" value="{{ @$editData ? 'Update' : 'Submit' }}"
+                                                    class="btn btn-primary btn-sm">
+                                            </div> --}}
+                                        @endif
+                                        
                                     </div>
 
 
