@@ -44,9 +44,9 @@
                                         Add Vote
                                     {{-- @endif --}}
 
-                                    <a class="btn btn-success float-right btn-sm"
+                                    {{-- <a class="btn btn-success float-right btn-sm"
                                         href="{{ route('nominations.president.view') }}">
-                                        <i class="fa fa-list"></i>Vote List</a>
+                                        <i class="fa fa-list"></i>Vote List</a> --}}
                                 </h3>
                             </div>
 

@@ -139,8 +139,8 @@ $route = Route::current()->getName();
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('valots.view') }}"
-                            class="nav-link {{ $route == 'valots.view' ? 'active' : '' }}">
+                        <a href="{{ route('valots.add') }}"
+                            class="nav-link {{ $route == 'valots.add' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Give Vote</p>
                         </a>

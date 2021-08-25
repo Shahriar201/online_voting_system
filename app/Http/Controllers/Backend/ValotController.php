@@ -13,15 +13,15 @@ use Auth;
 
 class ValotController extends Controller
 {
-    public function view(){
-        // dd(Auth::user()->id);
-        $allData['valots'] = Valot::all();
-        $allData['vote_purposes'] = VotePurpose::all();
-        $allData['categories'] = Category::all();
-        $allData['candidates'] = Candidate::all();
-        // dd($allData);
-        return view('backend.valot.view-valot-paper', $allData);
-    }
+    // public function view(){
+    //     // dd(Auth::user()->id);
+    //     $allData['valots'] = Valot::all();
+    //     $allData['vote_purposes'] = VotePurpose::all();
+    //     $allData['categories'] = Category::all();
+    //     $allData['candidates'] = Candidate::all();
+    //     // dd($allData);
+    //     return view('backend.valot.view-valot-paper', $allData);
+    // }
 
     public function add(){
         $allData['valots'] = Valot::all();

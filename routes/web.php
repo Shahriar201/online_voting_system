@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('backend.layouts.home');
+// });
+Route::get('/', 'Frontend\FrontendController@index');
 
 Auth::routes();
 
