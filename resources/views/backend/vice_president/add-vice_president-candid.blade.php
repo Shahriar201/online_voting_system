@@ -59,17 +59,17 @@
 
                             <div class="form-row">
 
-                                {{-- <div class="form-group col-md-4">
-                                    <label>Category</label>
-                                    <select name="category_id" id="category_id" class="form-control">
-                                        <option value="">Select Category</option>
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}" {{ (@$editData->category_id==$category->id)? "selected": "" }}>{{ $category->name }}</option>
-                                        @endforeach
+                                <div class="form-group col-md-4">
+                                    <label>Vote Purpose</label>
+                                    <select name="vote_purpose_id" id="vote_purpose_id" class="form-control">
+                                        <option value="">Select purpose</option>
+                                            @foreach ($vote_purposes as $purpose)
+                                                <option value="{{ $purpose->id }}" {{ (@$editData->vote_purpose_id==$purpose->id)? "selected": "" }}>{{ $purpose->name }}</option>
+                                            @endforeach
                                     </select>
-                                </div> --}}
+                                </div>
                                
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label>Candidate Name</label>
                                     <input type="text" name="name" value="{{ (@$editData->name) }}" class="form-control form-control-sm" placeholder="Write Name">
                                     <font color="red">{{ ($errors->has('name'))?($errors->first('name')): '' }}</font>

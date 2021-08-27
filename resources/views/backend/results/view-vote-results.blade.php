@@ -9,13 +9,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Manage Vice President Candid</h1>
+                    <h1 class="m-0">Manage Vote</h1>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Vice President</li>
+                        <li class="breadcrumb-item active">Vote</li>
                     </ol>
                 </div>
                 <!-- /.col -->
@@ -38,15 +38,7 @@
                     <div class="card">
                         <div class="card-header">
 
-                                <h3>Vice President Candid List
-                                    
-                                    {{-- @if($countContact<1) --}}
-                                    <a class="btn btn-success float-right btn-sm" href="{{ route('candidates.vicepresident.add') }}">
-                                        <i class="fa fa-plus-circle"></i>Add Vice President
-                                    </a>
-                                    {{-- @endif --}}
-
-                                </h3>
+                                <h3>Vote List</h3>
                             
                         </div>
                         <!-- /.card-header -->
@@ -56,36 +48,45 @@
                                 <thead>
                                     <tr>
                                         <th width="6%">SL.</th>
+                                        <th>Date</th>
                                         <th>Vote Purpose</th>
-                                        <th>Candidate Name</th>
-                                        <th width="12%">Action</th>
+                                        <th>Category</th>
+                                        <th>Nominate Candidate</th>
+                                        <th>Total Vote</th>
+                                        {{-- <th width="12%">Action</th> --}}
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($allData as $key => $vice_president)
+
                                     @php
-                                        $count_category = App\Model\Nomination::where('category_id', $vice_president->category_id)->count();
+                                        // $allData['candidates'] = App\Model\Candidate::orderBy('id', 'asc')->get();
+                                        // $count = App\Model\Valot::where('candidate_id', $candidates->id)->where('result', 1)->count();
+                                        // dd($count);
+                                        // $count++;
+                                        $valots = App\Model\Valot::where('vote_purpose_id', 1)->with(['category'])->get();
+                                        // dd($valots->toArray());
+                                        $total = 0;
+                                        // if ($valots->result == 1) {
+                                        //     $result = total++;
+                                        //     dd($result);
+                                        // }
                                     @endphp
 
-                                        <tr class= {{ $vice_president->id }}>
-                                            <td>{{ $key+1 }}</td>
-                                            <td>{{ $vice_president['vote_purpose']['name'] }}</td>
-                                            <td>{{ $vice_president->name }}</td>
+                                    @foreach ($valots as $key => $vote)
+                                        {{-- @php
+                                            $count_category = App\Model\Candidate::where('category_id', $vice_president->category_id)->count();
+                                        @endphp --}}
 
-                                            <td>
-                                                {{-- <a title="Edit" id="edit" class="btn btn-sm btn-primary" href="{{ route('candidates.vicepresident.edit', $vice_president->id)}}">
-                                                    <i class="fa fa-edit">
-
-                                                    </i> --}}
-                                                </a>
-                                                @if($count_category<1)
-                                                <a title="Delete" id="delete" class="btn btn-sm btn-danger" href="{{ route('candidates.vicepresident.delete', $vice_president->id) }}">
-                                                    <i class="fa fa-trash"></i>
-                                                </a>
-                                                @endif()
-                                            </td>
-                                        </tr>
+                                            <tr class= {{ $vote->id }}>
+                                                <td>{{ $key+1 }}</td>
+                                                <td>{{ $vote->date }}</td>
+                                                <td>{{ $vote['vote_purpose']['name'] }}</td>
+                                                <td>{{ $vote['category']['name'] }}</td>
+                                                {{-- <td>{{ $vote['nomination']['name'] }}</td> --}}
+                                                <td>{{ $vote['candidate']['name'] }}</td>
+                                                <td>{{ $vote->count }}</td>
+                                            </tr>
                                         
                                     @endforeach
                                     

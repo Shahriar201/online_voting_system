@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\VotePurpose;
 use App\Model\Candidate;
 use App\Model\Category;
 use Auth;
@@ -17,7 +18,8 @@ class VicePresidentController extends Controller
 
     public function add(){
         // $data['categories'] = Category::all();
-        return view('backend.vice_president.add-vice_president-candid');
+        $data['vote_purposes'] = VotePurpose::all();
+        return view('backend.vice_president.add-vice_president-candid', $data);
     }
 
     public function store(Request $request){
@@ -25,6 +27,7 @@ class VicePresidentController extends Controller
             'name' => 'required'
         ]);
         $candidate = new Candidate();
+        $candidate->vote_purpose_id = $request->vote_purpose_id;
         $candidate->category_id = '2';
         $candidate->name = $request->name;
         $candidate->created_by = Auth::user()->id;
@@ -34,12 +37,15 @@ class VicePresidentController extends Controller
     }
 
     public function edit($id){
-        $editData = Candidate::find($id);
-        return view('backend.vice_president.add-vice_president-candid', compact('editData'));
+        $editData['candidates'] = Candidate::find($id);
+        $editData['vote_purposes'] = VotePurpose::find($id);
+        // dd($editData['vote_purposes']);
+        return view('backend.vice_president.add-vice_president-candid', $editData);
     }
 
     public function update(Request $request, $id){
         $candidate = Candidate::find($id);
+        $candidate->vote_purpose_id = $request->vote_purpose_id;
         $candidate->name = $request->name;
         $candidate->updated_by = Auth::user()->id;
         $candidate->save();

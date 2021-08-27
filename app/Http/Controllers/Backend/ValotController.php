@@ -35,6 +35,7 @@ class ValotController extends Controller
         $valot = new Valot();
         $valot->date = date('Y-m-d', strtotime($request->date));
         $valot->vote_purpose_id = $request->vote_purpose_id;
+        $valot->nomination_id = $request->nomination_id;
         $valot->category_id = $request->category_id;
         $valot->candidate_id = $request->candidate_id;
         $valot->result = '1';

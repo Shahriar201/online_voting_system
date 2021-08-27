@@ -15,6 +15,7 @@ class CreateCandidatesTable extends Migration
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
+            $table->tinyInteger('vote_purpose_id');
             $table->tinyInteger('category_id');
             $table->string('name');
             $table->integer('created_by')->nullable();

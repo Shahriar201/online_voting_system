@@ -57,10 +57,11 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($allData as $key => $nomination)
+                                    @foreach ($nominations as $key => $nomination)
 
                                     <tr class="{{ $nomination->id }}">
                                         <td>{{ $key+1 }}</td>
+                                        {{-- <td>{{ $nomination['candidate']['name'] }}</td> --}}
                                         <td>{{ $nomination['candidate']['name'] }}</td>
                                         <td>{{ $nomination->name }}</td>
 

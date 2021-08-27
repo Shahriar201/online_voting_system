@@ -90,7 +90,7 @@ $route = Route::current()->getName();
                         <a href="{{ route('candidates.vicepresident.view') }}"
                             class="nav-link {{ $route == 'candidates.vicepresident.view' ? 'active' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>View President Candid</p>
+                            <p>View Vice President Candid</p>
                         </a>
                     </li>
 
@@ -98,7 +98,7 @@ $route = Route::current()->getName();
 
             </li>
 
-            <li class="nav-item has-treeview {{ $prefix == '/nominations' ? 'menu-open' : '' }}">
+            {{-- <li class="nav-item has-treeview {{ $prefix == '/nominations' ? 'menu-open' : '' }}">
                 <a href="" class="nav-link">
                     <i class="nav-icon fa fa-user"></i>
                     <p>
@@ -125,7 +125,29 @@ $route = Route::current()->getName();
 
                 </ul>
 
+            </li> --}}
+            
+            <li class="nav-item has-treeview {{ $prefix == '/results' ? 'menu-open' : '' }}">
+                <a href="" class="nav-link">
+                    <i class="nav-icon fa fa-user"></i>
+                    <p>
+                        Results Announce
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('results.view') }}"
+                            class="nav-link {{ $route == 'results.view' ? 'active' : '' }}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Student Cabinate Election Reslut</p>
+                        </a>
+                    </li>
+
+                </ul>
+
             </li>
+
         @endif
 
         @if (Auth::user()->role == 'Voter')

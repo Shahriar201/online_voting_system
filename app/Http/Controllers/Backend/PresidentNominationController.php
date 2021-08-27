@@ -11,8 +11,10 @@ use Auth;
 class PresidentNominationController extends Controller
 {
     public function view(){
-        $allData = Nomination::where('category_id', '1')->get();
-        return view('backend.nomination.view-president-nomination', compact('allData'));
+        $allData['nominations'] = Nomination::where('category_id', '1')->get();
+        $allData['candidates'] = Candidate::all();
+        // dd($allData['candidates']->toArray());
+        return view('backend.nomination.view-president-nomination', $allData);
     }
 
     public function add(){
@@ -21,6 +23,10 @@ class PresidentNominationController extends Controller
     }
 
     public function store(Request $request){
+        $this->validate($request,[
+            'name'=> 'required',
+            'name'=> 'required|unique:nominations,name',
+        ]);
         $nomination = new Nomination();
         $nomination->category_id = '1';
         $nomination->candidate_id = $request->candidate_id;

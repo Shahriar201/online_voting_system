@@ -56,32 +56,34 @@
                                 <thead>
                                     <tr>
                                         <th width="6%">SL.</th>
+                                        <th>Vote Purpose</th>
                                         <th>Candidate Name</th>
                                         <th width="12%">Action</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    @foreach ($allData as $key => $president)
-                                    @php
+                                    @foreach ($candidates as $key => $president)
+                                    {{-- @php
                                         $count_category = App\Model\Nomination::where('category_id', $president->category_id)->count();
-                                    @endphp
+                                    @endphp --}}
 
                                         <tr class= {{ $president->id }}>
                                             <td>{{ $key+1 }}</td>
+                                            <td>{{ $president['vote_purpose']['name'] }}</td>
                                             <td>{{ $president->name }}</td>
 
                                             <td>
-                                                <a title="Edit" id="edit" class="btn btn-sm btn-primary" href="{{ route('candidates.president.edit', $president->id)}}">
+                                                {{-- <a title="Edit" id="edit" class="btn btn-sm btn-primary" href="{{ route('candidates.president.edit', $president->id)}}">
                                                     <i class="fa fa-edit">
 
                                                     </i>
-                                                </a>
-                                                @if($count_category<1)
+                                                </a> --}}
+                                                {{-- @if($count_category<1) --}}
                                                 <a title="Delete" id="delete" class="btn btn-sm btn-danger" href="{{ route('candidates.president.delete', $president->id) }}">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
-                                                @endif()
+                                                {{-- @endif() --}}
                                             </td>
                                         </tr>
                                         

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\VotePurpose;
 use App\Model\Candidate;
 use App\Model\Category;
 use Auth;
@@ -11,13 +12,18 @@ use Auth;
 class PresidentController extends Controller
 {
     public function view(){
-        $allData = Candidate::where('category_id', '1')->get();
-        return view('backend.president.view-president-candid', compact('allData'));
+        $allData['candidates'] = Candidate::where('category_id', '1')->get();
+        $allData['vote_purposes'] = VotePurpose::all();
+        // dd($allData);
+        return view('backend.president.view-president-candid', $allData);
     }
 
     public function add(){
         // $data['categories'] = Category::all();
-        return view('backend.president.add-president-candid');
+        $data['candidates'] = Candidate::all();
+        $data['vote_purposes'] = VotePurpose::all();
+        // dd($data['vote_purposes']);
+        return view('backend.president.add-president-candid', $data);
     }
 
     public function store(Request $request){
@@ -25,6 +31,7 @@ class PresidentController extends Controller
             'name' => 'required'
         ]);
         $candidate = new Candidate();
+        $candidate->vote_purpose_id = $request->vote_purpose_id;
         $candidate->category_id = '1';
         $candidate->name = $request->name;
         $candidate->created_by = Auth::user()->id;
@@ -34,12 +41,15 @@ class PresidentController extends Controller
     }
 
     public function edit($id){
-        $editData = Candidate::find($id);
-        return view('backend.president.add-president-candid', compact('editData'));
+        $data['editData'] = Candidate::find($id);
+        $data['vote_purposes'] = VotePurpose::find($id);
+        // dd($data['vote_purposes']);
+        return view('backend.president.add-president-candid', $data);
     }
 
     public function update(Request $request, $id){
         $candidate = Candidate::find($id);
+        $candidate->vote_purpose_id = $request->vote_purpose_id;
         $candidate->name = $request->name;
         $candidate->updated_by = Auth::user()->id;
         $candidate->save();

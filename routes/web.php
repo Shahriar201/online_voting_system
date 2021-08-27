@@ -97,5 +97,11 @@ Route::group(['middleware'=>'auth'], function(){
         Route::get('/get-candidate-name', 'Backend\ValotController@getCandidate')->name('get-candidate-name');
         
     });
+    
+    Route::prefix('results')->group(function(){
+
+        Route::get('/view', 'Backend\ResultController@view')->name('results.view');
+        
+    });
 
 });

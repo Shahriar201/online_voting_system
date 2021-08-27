@@ -18,6 +18,7 @@ class CreateValotsTable extends Migration
             $table->date('date');
             $table->integer('vote_purpose_id');
             $table->integer('category_id');
+            $table->integer('nomination_id');
             $table->integer('candidate_id');
             $table->integer('result')->nullable();
             $table->integer('created_by')->nullable();
